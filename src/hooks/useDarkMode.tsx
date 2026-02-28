@@ -39,31 +39,19 @@ export function useDarkMode() {
       }
     };
 
-    // Listen for custom theme change event
-    const handleCustomThemeChange = (e: CustomEvent<Theme>) => {
-      setTheme(e.detail);
-    };
-
     mediaQuery.addEventListener('change', handleChange);
-    window.addEventListener('theme-change', handleCustomThemeChange as EventListener);
-    
-    return () => {
-      mediaQuery.removeEventListener('change', handleChange);
-      window.removeEventListener('theme-change', handleCustomThemeChange as EventListener);
-    };
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
   const toggleDark = () => {
     const newTheme = isDark ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    window.dispatchEvent(new CustomEvent('theme-change', { detail: newTheme }));
   };
 
   const setSystemTheme = () => {
     setTheme('system');
     localStorage.setItem('theme', 'system');
-    window.dispatchEvent(new CustomEvent('theme-change', { detail: 'system' }));
   };
 
   return { isDark, theme, toggleDark, setTheme, setSystemTheme };
