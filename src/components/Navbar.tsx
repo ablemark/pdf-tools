@@ -1,4 +1,4 @@
-import { Menu, ChevronDown } from 'lucide-react';
+import { Menu, ChevronDown, Search } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 export default function Navbar() {
@@ -22,6 +22,7 @@ export default function Navbar() {
     { id: 'pdf-to-jpg', title: 'PDF 转图片' },
     { id: 'rotate', title: '旋转 PDF' },
     { id: 'watermark', title: '添加水印' },
+    { id: 'page-numbers', title: '添加页码' },
   ];
 
   return (
@@ -67,6 +68,13 @@ export default function Navbar() {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-6">
+            <button 
+              onClick={() => window.dispatchEvent(new Event('openCommandMenu'))}
+              className="p-2 text-gray-500 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-white/5 rounded-full transition-colors"
+              title="搜索 (Cmd+K)"
+            >
+              <Search className="w-5 h-5" />
+            </button>
             <button className="text-gray-700 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-zinc-100 text-sm font-black uppercase tracking-widest px-3 py-2 transition-all">
               登录
             </button>
@@ -77,6 +85,12 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
+            <button 
+              onClick={() => window.dispatchEvent(new Event('openCommandMenu'))}
+              className="text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-100 p-2 transition-all mr-1"
+            >
+              <Search className="h-6 w-6" />
+            </button>
             <button className="text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-100 p-2 transition-all">
               <Menu className="h-7 w-7" />
             </button>
