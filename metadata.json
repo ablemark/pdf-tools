@@ -1,5 +1,5 @@
 {
-  "name": "PDF Signer",
-  "description": "Sign PDF documents with a handwritten signature using a drag-and-drop interface.",
+  "name": "PDF Tools",
+  "description": "A comprehensive suite of PDF tools including merge, split, compress, and convert.",
   "requestFramePermissions": []
 }
