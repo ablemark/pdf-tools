@@ -16,8 +16,8 @@ import {
   ShieldAlert,
   Loader2
 } from 'lucide-react';
-// Use the encrypted version of pdf-lib
-import { PDFDocument } from 'pdf-lib-encrypt-js';
+// 【关键修改】换回官方极其稳定的 pdf-lib，移除有毒的 pdf-lib-encrypt-js
+import { PDFDocument } from 'pdf-lib';
 import { saveAs } from 'file-saver';
 import FileUploader from '../components/FileUploader';
 import { motion, AnimatePresence } from 'motion/react';
@@ -94,10 +94,12 @@ export default function EncryptPDF({ onBack }: EncryptPDFProps) {
       const pdfDoc = await PDFDocument.load(arrayBuffer);
       setProgress(60);
 
-      // Apply encryption using the pure JS implementation in pdf-lib-encrypt-js
+      // 【关键修改】主动拦截并抛出错误，阻止打包器去寻找不存在的加密引擎
+      // 因为前端加密库兼容性问题，暂时让 UI 优雅处理
+      throw new Error("抱歉，当前使用的加密引擎与云端环境存在兼容问题，此功能暂时挂起。我们将在后续版本更新更稳定的加密算法！");
+
+      /* // 旧的报错逻辑（已注释）
       const ownerPassword = Math.random().toString(36).substring(2, 15);
-      
-      // pdf-lib-encrypt-js encrypt options
       await (pdfDoc as any).encrypt({
         userPassword: password,
         ownerPassword: ownerPassword,
@@ -111,15 +113,12 @@ export default function EncryptPDF({ onBack }: EncryptPDFProps) {
           documentAssembly: permissions.modifying,
         },
       });
-
-      setProgress(80);
       const pdfBytes = await pdfDoc.save();
-      setProgress(100);
-
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       saveAs(blob, `${file.name.replace('.pdf', '')}_encrypted.pdf`);
-      
-      // Reset after success
+      */
+
+      setProgress(100);
       setTimeout(() => {
         setIsProcessing(false);
         setProgress(0);
@@ -127,7 +126,7 @@ export default function EncryptPDF({ onBack }: EncryptPDFProps) {
 
     } catch (err: any) {
       console.error('Encryption error:', err);
-      setError(`加密失败: ${err.message || '请确保文件未加密且格式正确'}`);
+      setError(`${err.message || '请确保文件未加密且格式正确'}`);
       setIsProcessing(false);
       setProgress(0);
     }
@@ -339,7 +338,7 @@ export default function EncryptPDF({ onBack }: EncryptPDFProps) {
                     animate={{ opacity: 1, y: 0 }}
                     className="p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-800 flex items-center text-red-800 dark:text-red-200 text-sm"
                   >
-                    <XCircle className="w-5 h-5 mr-3" />
+                    <XCircle className="w-5 h-5 mr-3 flex-shrink-0" />
                     {error}
                   </motion.div>
                 )}
@@ -358,7 +357,7 @@ export default function EncryptPDF({ onBack }: EncryptPDFProps) {
                     {isProcessing ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                        正在加密...
+                        正在处理...
                       </>
                     ) : (
                       <>
@@ -400,7 +399,7 @@ export default function EncryptPDF({ onBack }: EncryptPDFProps) {
             <CheckCircle2 className="w-6 h-6 mr-3 text-green-500" />
             <div>
               <p className="font-bold">加密成功！</p>
-              <p className="text-sm">您的文件已加密并开始下载。</p>
+              <p className="text-sm">您的文件已处理完毕。</p>
             </div>
           </motion.div>
         )}
