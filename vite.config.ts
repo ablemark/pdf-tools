@@ -13,11 +13,6 @@ export default defineConfig(({mode}) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
-        'pdf-lib-encrypt-js': path.resolve(__dirname, 'node_modules/pdf-lib-encrypt-js/src/index.ts'),
-        'src/api': path.resolve(__dirname, 'node_modules/pdf-lib-encrypt-js/src/api'),
-        'src/core': path.resolve(__dirname, 'node_modules/pdf-lib-encrypt-js/src/core'),
-        'src/types': path.resolve(__dirname, 'node_modules/pdf-lib-encrypt-js/src/types'),
-        'src/utils': path.resolve(__dirname, 'node_modules/pdf-lib-encrypt-js/src/utils'),
       },
     },
     server: {

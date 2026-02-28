@@ -180,13 +180,13 @@ export default function MergePDF({ onBack }: MergePDFProps) {
   };
 
   return (
-    <div className="flex-grow bg-gray-50 dark:bg-slate-950 py-12 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+    <div className="flex-grow py-12 transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <button 
           onClick={onBack}
-          className="flex items-center text-gray-600 dark:text-gray-400 hover:text-pdf-red dark:hover:text-pdf-red transition-colors font-medium"
+          className="flex items-center text-gray-600 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-violet-400 transition-colors font-bold group"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
+          <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
           返回工具列表
         </button>
       </div>
@@ -201,22 +201,22 @@ export default function MergePDF({ onBack }: MergePDFProps) {
         ) : (
           <div className="space-y-8">
             {/* Header Actions */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl p-8 rounded-3xl shadow-sm border border-gray-200 dark:border-white/5 glass">
               <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">合并列表</h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <h2 className="text-2xl font-black text-gray-900 dark:text-zinc-100 tracking-tight">合并列表</h2>
+                <p className="text-sm text-gray-500 dark:text-zinc-500 mt-1 font-medium">
                   共选择 {files.length} 个文件。拖拽卡片可调整合并顺序。
                 </p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <button
                   onClick={() => setFiles([])}
-                  className="flex items-center px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-pdf-red transition-colors"
+                  className="flex items-center px-4 py-2 text-sm font-bold text-gray-500 dark:text-zinc-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
                   清空列表
                 </button>
-                <label className="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-lg cursor-pointer transition-colors text-sm font-medium">
+                <label className="flex items-center px-5 py-2.5 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-700 dark:text-zinc-300 rounded-xl cursor-pointer transition-all text-sm font-bold shadow-sm">
                   <Plus className="w-4 h-4 mr-2" />
                   添加更多
                   <input
@@ -230,7 +230,7 @@ export default function MergePDF({ onBack }: MergePDFProps) {
                 <button
                   disabled={isProcessing || files.length < 2}
                   onClick={handleMerge}
-                  className={`flex items-center px-6 py-2 bg-pdf-red hover:bg-pdf-red-hover text-white rounded-lg font-bold transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${isProcessing ? 'animate-pulse' : ''}`}
+                  className={`flex items-center px-8 py-2.5 bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white rounded-xl font-bold transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed ${isProcessing ? 'animate-pulse' : ''}`}
                 >
                   {isProcessing ? (
                     <>
@@ -284,28 +284,28 @@ export default function MergePDF({ onBack }: MergePDFProps) {
 
       {/* Success Modal */}
       {mergedPdfUrl && !isProcessing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-            <div className="p-8 text-center">
-              <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Download className="w-10 h-10 text-green-600 dark:text-green-400" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xl">
+          <div className="w-full max-w-md bg-white dark:bg-white/[0.02] dark:backdrop-blur-2xl rounded-[2.5rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-500 border border-gray-100 dark:border-white/5">
+            <div className="p-10 text-center">
+              <div className="w-24 h-24 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-8">
+                <Download className="w-12 h-12 text-green-600 dark:text-green-400" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">合并成功！</h2>
-              <p className="text-gray-500 dark:text-gray-400 mb-8">
+              <h2 className="text-3xl font-black text-gray-900 dark:text-zinc-100 mb-3 tracking-tight">合并成功！</h2>
+              <p className="text-gray-500 dark:text-zinc-500 mb-10 font-medium">
                 您的 PDF 文件已成功合并。点击下方按钮下载。
               </p>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 <a 
                   href={mergedPdfUrl} 
                   download="merged_document.pdf"
-                  className="w-full py-4 bg-pdf-red hover:bg-pdf-red-hover text-white font-bold rounded-2xl shadow-lg transition-transform hover:scale-[1.02] flex items-center justify-center"
+                  className="w-full py-5 bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white font-bold rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center"
                 >
-                  <Download className="w-5 h-5 mr-2" />
+                  <Download className="w-6 h-6 mr-3" />
                   下载合并文件
                 </a>
                 <button 
                   onClick={() => setMergedPdfUrl(null)}
-                  className="w-full py-4 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-bold rounded-2xl transition-colors"
+                  className="w-full py-5 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-700 dark:text-zinc-300 font-bold rounded-2xl transition-all"
                 >
                   继续操作
                 </button>

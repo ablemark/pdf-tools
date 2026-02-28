@@ -6,7 +6,7 @@
   --color-pdf-red: #E5322D;
   --color-pdf-red-hover: #D32F2A;
   --color-pdf-bg: #F8F9FA;
-  --color-pdf-bg-dark: #020617; /* slate-950 */
+  --color-pdf-bg-dark: #020205;
 }
 
 body {
@@ -17,10 +17,10 @@ body {
 
 .dark body {
   background-color: var(--color-pdf-bg-dark);
-  color: #e2e8f0; /* slate-200 */
+  color: #f4f4f5; /* zinc-100 */
 }
 
-/* Glassmorphism utilities */
+/* Cosmic Glass Utilities */
 .glass {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
@@ -28,10 +28,30 @@ body {
 }
 
 .dark .glass {
-  background: rgba(15, 23, 42, 0.7); /* slate-900 with opacity */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark .glass-hover:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(99, 102, 241, 0.5); /* indigo-500/50 */
+}
+
+/* Neon Gradients */
+.btn-neon {
+  background: linear-gradient(to right, #7c3aed, #4f46e5); /* violet-600 to indigo-600 */
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(to right, #8b5cf6, #6366f1); /* violet-500 to indigo-500 */
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.progress-neon {
+  background: linear-gradient(to right, #22d3ee, #3b82f6); /* cyan-400 to blue-500 */
 }
 
 /* PDF Paper effect */

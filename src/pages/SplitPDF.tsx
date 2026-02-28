@@ -107,13 +107,13 @@ export default function SplitPDF({ onBack }: SplitPDFProps) {
   };
 
   return (
-    <div className="flex-grow bg-gray-50 dark:bg-slate-950 py-12 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+    <div className="flex-grow py-12 transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <button 
           onClick={onBack}
-          className="flex items-center text-gray-600 dark:text-gray-400 hover:text-pdf-red dark:hover:text-pdf-red transition-colors font-medium"
+          className="flex items-center text-gray-600 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-violet-400 transition-colors font-bold group"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
+          <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
           返回工具列表
         </button>
       </div>
@@ -128,18 +128,18 @@ export default function SplitPDF({ onBack }: SplitPDFProps) {
 
       {file && !isProcessing && !splitPdfUrl && (
         <div className="w-full max-w-4xl mx-auto p-6">
-          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">拆分 PDF</h2>
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-8 flex flex-col items-center">
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-full mb-6">
-              <Settings className="w-12 h-12 text-blue-500 dark:text-blue-400" />
+          <h2 className="text-4xl font-black text-center text-gray-800 dark:text-zinc-100 mb-10 tracking-tight">拆分 PDF</h2>
+          <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl rounded-[2.5rem] shadow-sm border border-gray-200 dark:border-white/5 p-12 flex flex-col items-center glass">
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-full mb-8">
+              <Settings className="w-16 h-16 text-blue-500 dark:text-blue-400" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">设置提取范围</h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-6 text-center max-w-md">
-              当前文件：<span className="font-medium text-gray-700 dark:text-gray-300">{file.name}</span>
+            <h3 className="text-2xl font-black text-gray-800 dark:text-zinc-100 mb-3 tracking-tight">设置提取范围</h3>
+            <p className="text-gray-500 dark:text-zinc-500 mb-10 text-center max-w-md font-medium">
+              当前文件：<span className="font-bold text-gray-700 dark:text-zinc-300">{file.name}</span>
             </p>
             
-            <div className="w-full max-w-md mb-8">
-              <label htmlFor="pageRange" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <div className="w-full max-w-md mb-10">
+              <label htmlFor="pageRange" className="block text-sm font-bold text-gray-700 dark:text-zinc-400 mb-3">
                 输入页码范围（例如：“1-3” 或 “5,7,9”）
               </label>
               <input
@@ -148,20 +148,20 @@ export default function SplitPDF({ onBack }: SplitPDFProps) {
                 value={pageRange}
                 onChange={(e) => setPageRange(e.target.value)}
                 placeholder="例如：1-5, 8, 11-13"
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-pdf-red focus:border-pdf-red outline-none transition-all"
+                className="w-full px-6 py-4 border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-900 dark:text-zinc-100 rounded-2xl focus:ring-2 focus:ring-pdf-red dark:focus:ring-violet-500 outline-none transition-all font-medium"
               />
             </div>
 
-            <div className="flex space-x-4">
+            <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
               <button 
                 onClick={handleSplit}
-                className="bg-pdf-red hover:bg-pdf-red-hover text-white text-lg font-bold py-3 px-12 rounded-xl shadow-md transition-transform hover:scale-105"
+                className="flex-1 bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white text-lg font-bold py-4 px-8 rounded-2xl shadow-xl transition-all hover:scale-[1.02]"
               >
                 拆分 PDF
               </button>
               <button 
                 onClick={() => setFile(null)}
-                className="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-lg font-bold py-3 px-8 rounded-xl transition-colors"
+                className="flex-1 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-700 dark:text-zinc-300 text-lg font-bold py-4 px-8 rounded-2xl transition-all"
               >
                 重新选择文件
               </button>
@@ -172,29 +172,29 @@ export default function SplitPDF({ onBack }: SplitPDFProps) {
 
       {isProcessing && (
         <div className="w-full max-w-4xl mx-auto p-6 flex flex-col items-center justify-center min-h-[400px]">
-          <Loader2 className="w-16 h-16 text-pdf-red animate-spin mb-6" />
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">正在拆分您的 PDF...</h2>
-          <p className="text-gray-500 dark:text-gray-400">这可能需要几秒钟的时间，请稍候。</p>
+          <Loader2 className="w-20 h-20 text-pdf-red dark:text-cyan-400 animate-spin mb-8" />
+          <h2 className="text-3xl font-black text-gray-800 dark:text-zinc-100 mb-4 tracking-tight">正在拆分您的 PDF...</h2>
+          <p className="text-gray-500 dark:text-zinc-500 font-medium">这可能需要几秒钟的时间，请稍候。</p>
         </div>
       )}
 
       {splitPdfUrl && !isProcessing && (
-        <div className="w-full max-w-4xl mx-auto p-6 flex flex-col items-center justify-center min-h-[400px] bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700">
-          <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded-full mb-6">
-            <Download className="w-12 h-12 text-green-600 dark:text-green-400" />
+        <div className="w-full max-w-4xl mx-auto p-12 flex flex-col items-center justify-center min-h-[400px] bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-white/5 glass animate-in fade-in zoom-in duration-500">
+          <div className="bg-green-100 dark:bg-green-900/20 p-8 rounded-full mb-10">
+            <Download className="w-16 h-16 text-green-600 dark:text-green-400" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">拆分成功！</h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-8 text-center max-w-md">
+          <h2 className="text-4xl font-black text-gray-800 dark:text-zinc-100 mb-4 tracking-tight">拆分成功！</h2>
+          <p className="text-gray-500 dark:text-zinc-500 mb-10 text-center max-w-md font-medium">
             您的 PDF 文件已成功拆分。如果没有自动下载，请点击下方按钮手动下载。
           </p>
-          <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row gap-6 w-full max-w-lg">
             <a 
               href={splitPdfUrl} 
               download={`split_${file?.name || 'document.pdf'}`}
-              className="bg-pdf-red hover:bg-pdf-red-hover text-white text-lg font-bold py-3 px-8 rounded-xl shadow-md transition-transform hover:scale-105 flex items-center"
+              className="flex-1 bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white text-xl font-bold py-5 px-8 rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center"
             >
-              <Download className="w-5 h-5 mr-2" />
-              下载拆分后的 PDF
+              <Download className="w-6 h-6 mr-3" />
+              下载 PDF
             </a>
             <button 
               onClick={() => {
@@ -202,7 +202,7 @@ export default function SplitPDF({ onBack }: SplitPDFProps) {
                 setFile(null);
                 setPageRange('');
               }}
-              className="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-lg font-bold py-3 px-8 rounded-xl transition-colors"
+              className="flex-1 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-700 dark:text-zinc-300 text-xl font-bold py-5 px-8 rounded-2xl transition-all"
             >
               继续拆分
             </button>

@@ -22,54 +22,54 @@ export default function Help({ onBack }: { onBack: () => void }) {
   ];
 
   return (
-    <div className="flex-grow bg-gray-50 dark:bg-gray-900 py-12 transition-colors">
+    <div className="flex-grow py-12 transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <button 
           onClick={onBack}
-          className="flex items-center text-gray-600 dark:text-gray-400 hover:text-pdf-red dark:hover:text-pdf-red transition-colors font-medium mb-8"
+          className="flex items-center text-gray-600 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-violet-400 transition-colors font-black mb-8 group"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
+          <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
           返回首页
         </button>
 
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">帮助中心</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-zinc-100 mb-6 tracking-tight">帮助中心</h1>
+          <p className="text-xl text-gray-600 dark:text-zinc-400 font-medium">
             在这里寻找您需要的答案，或者了解如何更好地使用我们的工具。
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-            <div className="w-12 h-12 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center mb-4">
-              <FileText className="w-6 h-6 text-pdf-red" />
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl p-8 rounded-[2rem] shadow-2xl border border-gray-200 dark:border-white/5 glass group hover:scale-[1.02] transition-all">
+            <div className="w-16 h-16 bg-red-50 dark:bg-violet-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <FileText className="w-8 h-8 text-pdf-red dark:text-violet-400" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">使用指南</h3>
-            <p className="text-gray-600 dark:text-gray-400">了解每个工具的具体操作步骤和最佳实践。</p>
+            <h3 className="text-2xl font-black text-gray-900 dark:text-zinc-100 mb-3 tracking-tight">使用指南</h3>
+            <p className="text-gray-600 dark:text-zinc-400 font-medium leading-relaxed">了解每个工具的具体操作步骤和最佳实践。</p>
           </div>
           
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-            <div className="w-12 h-12 bg-red-50 dark:bg-red-900/20 rounded-lg flex items-center justify-center mb-4">
-              <Shield className="w-6 h-6 text-pdf-red" />
+          <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl p-8 rounded-[2rem] shadow-2xl border border-gray-200 dark:border-white/5 glass group hover:scale-[1.02] transition-all">
+            <div className="w-16 h-16 bg-red-50 dark:bg-violet-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <Shield className="w-8 h-8 text-pdf-red dark:text-violet-400" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">隐私与安全</h3>
-            <p className="text-gray-600 dark:text-gray-400">了解我们如何保护您的数据和文件安全。</p>
+            <h3 className="text-2xl font-black text-gray-900 dark:text-zinc-100 mb-3 tracking-tight">隐私与安全</h3>
+            <p className="text-gray-600 dark:text-zinc-400 font-medium leading-relaxed">了解我们如何保护您的数据和文件安全。</p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-8 md:p-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
-            <HelpCircle className="w-6 h-6 mr-2 text-pdf-red" />
+        <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-gray-200 dark:border-white/5 p-10 md:p-16 glass">
+          <h2 className="text-3xl font-black text-gray-900 dark:text-zinc-100 mb-10 flex items-center tracking-tight">
+            <HelpCircle className="w-8 h-8 mr-4 text-pdf-red dark:text-violet-400" />
             常见问题 (FAQ)
           </h2>
           
-          <div className="space-y-8">
+          <div className="space-y-10">
             {faqs.map((faq, index) => (
-              <div key={index} className="border-b border-gray-100 dark:border-gray-700 pb-6 last:border-0 last:pb-0">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+              <div key={index} className="border-b border-gray-100 dark:border-white/5 pb-10 last:border-0 last:pb-0">
+                <h3 className="text-xl font-black text-gray-900 dark:text-zinc-100 mb-4 tracking-tight">
                   {faq.question}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-lg text-gray-600 dark:text-zinc-400 font-medium leading-relaxed">
                   {faq.answer}
                 </p>
               </div>

@@ -215,13 +215,13 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
   }, []);
 
   return (
-    <div className="flex-grow bg-gray-50 dark:bg-slate-950 py-12 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+    <div className="flex-grow py-12 transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <button 
           onClick={onBack}
-          className="flex items-center text-gray-600 dark:text-slate-400 hover:text-pdf-red dark:hover:text-pdf-red transition-colors font-medium"
+          className="flex items-center text-gray-600 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-violet-400 transition-colors font-bold group"
         >
-          <ArrowLeft className="w-5 h-5 mr-2" />
+          <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
           返回工具列表
         </button>
       </div>
@@ -242,19 +242,19 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Left: Settings Panel */}
             <div className="lg:col-span-1 space-y-6">
-              <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-800 p-6 sticky top-6">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-                  <Settings2 className="w-5 h-5 mr-2 text-pdf-red" />
+              <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl rounded-3xl shadow-sm border border-gray-200 dark:border-white/5 p-8 glass sticky top-6">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-zinc-100 mb-8 flex items-center">
+                  <Settings2 className="w-5 h-5 mr-3 text-violet-500" />
                   排版设置
                 </h3>
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {/* Page Size */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                    <label className="block text-sm font-bold text-gray-700 dark:text-zinc-400 mb-4">
                       页面大小
                     </label>
-                    <div className="grid grid-cols-1 gap-2">
+                    <div className="grid grid-cols-1 gap-3">
                       {[
                         { id: 'fit', label: '自适应图片', icon: <Maximize2 className="w-4 h-4" /> },
                         { id: 'A4', label: 'A4 (297x210mm)', icon: <FileText className="w-4 h-4" /> },
@@ -263,10 +263,10 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
                         <button
                           key={option.id}
                           onClick={() => setPageSize(option.id as PageSize)}
-                          className={`flex items-center px-4 py-3 rounded-xl border-2 transition-all ${
+                          className={`flex items-center px-4 py-4 rounded-2xl border-2 transition-all ${
                             pageSize === option.id 
-                              ? 'border-pdf-red bg-red-50 dark:bg-red-900/20 text-pdf-red' 
-                              : 'border-gray-100 dark:border-slate-800 hover:border-gray-200 dark:hover:border-slate-700 text-gray-600 dark:text-slate-400'
+                              ? 'border-pdf-red dark:border-violet-500 bg-red-50 dark:bg-violet-500/10 text-pdf-red dark:text-violet-400' 
+                              : 'border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 text-gray-600 dark:text-zinc-500'
                           }`}
                         >
                           <span className="mr-3">{option.icon}</span>
@@ -279,16 +279,16 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
                   {/* Orientation */}
                   {pageSize !== 'fit' && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                      <label className="block text-sm font-bold text-gray-700 dark:text-zinc-400 mb-4">
                         页面方向
                       </label>
-                      <div className="flex bg-gray-100 dark:bg-slate-800 p-1 rounded-xl">
+                      <div className="flex bg-gray-100 dark:bg-white/5 p-1 rounded-2xl">
                         <button
                           onClick={() => setOrientation('portrait')}
-                          className={`flex-1 flex items-center justify-center py-2 rounded-lg text-xs font-bold transition-all ${
+                          className={`flex-1 flex items-center justify-center py-3 rounded-xl text-xs font-bold transition-all ${
                             orientation === 'portrait' 
-                              ? 'bg-white dark:bg-slate-700 text-pdf-red shadow-sm' 
-                              : 'text-gray-500 dark:text-slate-400'
+                              ? 'bg-white dark:bg-white/10 text-pdf-red dark:text-violet-400 shadow-sm' 
+                              : 'text-gray-500 dark:text-zinc-500'
                           }`}
                         >
                           <Layout className="w-4 h-4 mr-2" />
@@ -296,10 +296,10 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
                         </button>
                         <button
                           onClick={() => setOrientation('landscape')}
-                          className={`flex-1 flex items-center justify-center py-2 rounded-lg text-xs font-bold transition-all ${
+                          className={`flex-1 flex items-center justify-center py-3 rounded-xl text-xs font-bold transition-all ${
                             orientation === 'landscape' 
-                              ? 'bg-white dark:bg-slate-700 text-pdf-red shadow-sm' 
-                              : 'text-gray-500 dark:text-slate-400'
+                              ? 'bg-white dark:bg-white/10 text-pdf-red dark:text-violet-400 shadow-sm' 
+                              : 'text-gray-500 dark:text-zinc-500'
                           }`}
                         >
                           <Layout className="w-4 h-4 mr-2 rotate-90" />
@@ -311,10 +311,10 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
 
                   {/* Margins */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                    <label className="block text-sm font-bold text-gray-700 dark:text-zinc-400 mb-4">
                       页边距
                     </label>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-3 gap-3">
                       {[
                         { id: 'none', label: '无' },
                         { id: 'small', label: '小' },
@@ -323,10 +323,10 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
                         <button
                           key={option.id}
                           onClick={() => setMargin(option.id as Margin)}
-                          className={`py-2 rounded-xl border-2 text-xs font-bold transition-all ${
+                          className={`py-3 rounded-2xl border-2 text-xs font-bold transition-all ${
                             margin === option.id 
-                              ? 'border-pdf-red bg-red-50 dark:bg-red-900/20 text-pdf-red' 
-                              : 'border-gray-100 dark:border-slate-800 hover:border-gray-200 dark:hover:border-slate-700 text-gray-600 dark:text-slate-400'
+                              ? 'border-pdf-red dark:border-violet-500 bg-red-50 dark:bg-violet-500/10 text-pdf-red dark:text-violet-400' 
+                              : 'border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 text-gray-600 dark:text-zinc-500'
                           }`}
                         >
                           {option.label}
@@ -338,7 +338,7 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
                   <button
                     onClick={convertToPdf}
                     disabled={isProcessing}
-                    className="w-full flex items-center justify-center px-6 py-4 bg-pdf-red hover:bg-pdf-red-hover text-white rounded-2xl font-bold shadow-lg shadow-pdf-red/20 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+                    className="w-full flex items-center justify-center px-6 py-5 bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white rounded-2xl font-bold shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
                   >
                     {isProcessing ? (
                       <>
@@ -358,19 +358,19 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
 
             {/* Right: Image Grid */}
             <div className="lg:col-span-3">
-              <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-800 p-6 mb-8 flex items-center justify-between glass">
+              <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl rounded-3xl shadow-sm border border-gray-200 dark:border-white/5 p-8 mb-8 flex items-center justify-between glass">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
-                    <FileImage className="w-6 h-6 mr-2 text-pdf-red" />
+                  <h2 className="text-3xl font-black text-gray-900 dark:text-zinc-100 flex items-center tracking-tight">
+                    <FileImage className="w-8 h-8 mr-3 text-pdf-red dark:text-violet-400" />
                     图片列表
                   </h2>
-                  <p className="text-sm text-gray-500 dark:text-slate-400 mt-1">
+                  <p className="text-sm text-gray-500 dark:text-zinc-500 mt-2 font-medium">
                     共 {images.length} 张图片 • 拖拽可调整合并顺序
                   </p>
                 </div>
                 <button
                   onClick={() => setImages([])}
-                  className="text-sm font-medium text-gray-500 hover:text-red-500 transition-colors"
+                  className="text-sm font-bold text-gray-500 dark:text-zinc-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
                 >
                   清空列表
                 </button>
@@ -441,18 +441,18 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
 
       {/* Processing Overlay */}
       {isProcessing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center border border-gray-100 dark:border-slate-800">
-            <div className="relative w-24 h-24 mx-auto mb-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xl">
+          <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-2xl p-12 rounded-[2.5rem] shadow-2xl max-w-sm w-full text-center border border-gray-100 dark:border-white/5">
+            <div className="relative w-28 h-28 mx-auto mb-8">
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 <circle 
-                  className="text-gray-200 dark:text-slate-800 stroke-current" 
+                  className="text-gray-200 dark:text-white/5 stroke-current" 
                   strokeWidth="8" 
                   fill="transparent" 
                   r="40" cx="50" cy="50" 
                 />
                 <circle 
-                  className="text-pdf-red stroke-current transition-all duration-300 ease-out" 
+                  className="text-pdf-red dark:text-cyan-400 stroke-current transition-all duration-500 ease-out" 
                   strokeWidth="8" 
                   strokeDasharray={251.2}
                   strokeDashoffset={251.2 - (251.2 * progress) / 100}
@@ -461,14 +461,14 @@ export default function ImageToPdf({ onBack }: { onBack: () => void }) {
                   r="40" cx="50" cy="50" 
                 />
               </svg>
-              <div className="absolute inset-0 flex items-center justify-center font-bold text-xl text-gray-900 dark:text-white">
+              <div className="absolute inset-0 flex items-center justify-center font-black text-2xl text-gray-900 dark:text-cyan-400">
                 {progress}%
               </div>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">正在转换您的图片</h3>
-            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">{statusText}</p>
-            <div className="flex items-center justify-center text-xs text-pdf-red font-medium animate-pulse">
-              <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+            <h3 className="text-2xl font-black text-gray-900 dark:text-zinc-100 mb-3 tracking-tight">正在转换您的图片</h3>
+            <p className="text-sm text-gray-500 dark:text-zinc-500 mb-6 font-medium">{statusText}</p>
+            <div className="flex items-center justify-center text-xs text-pdf-red dark:text-violet-400 font-bold animate-pulse">
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
               请勿关闭浏览器窗口
             </div>
           </div>

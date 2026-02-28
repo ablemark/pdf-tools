@@ -119,18 +119,18 @@ const EditorPageCard: React.FC<EditorPageCardProps> = ({
     <div 
       ref={setNodeRef}
       style={style}
-      className={`relative group rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+      className={`relative group rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
         isDeleted 
           ? 'border-red-500/50 grayscale opacity-60' 
-          : 'border-transparent hover:border-pdf-red dark:hover:border-pdf-red shadow-sm hover:shadow-md'
-      } bg-white dark:bg-slate-900 ${isOverlay ? 'cursor-grabbing' : 'cursor-default'}`}
+          : 'border-transparent hover:border-pdf-red dark:hover:border-violet-500 shadow-sm hover:shadow-xl'
+      } bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl ${isOverlay ? 'cursor-grabbing' : 'cursor-default'}`}
     >
       {/* Drag Handle */}
       {!isOverlay && (
         <div 
           {...attributes} 
           {...listeners}
-          className="absolute top-2 left-2 z-20 p-1.5 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity cursor-grab active:cursor-grabbing text-gray-500 hover:text-pdf-red"
+          className="absolute top-3 left-3 z-20 p-2 bg-white/90 dark:bg-white/10 backdrop-blur-xl rounded-xl opacity-0 group-hover:opacity-100 transition-all cursor-grab active:cursor-grabbing text-gray-500 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-violet-400 shadow-sm"
         >
           <GripVertical className="w-4 h-4" />
         </div>
@@ -139,26 +139,26 @@ const EditorPageCard: React.FC<EditorPageCardProps> = ({
       {/* Thumbnail Container */}
       <div 
         ref={containerRef}
-        className="aspect-[3/4] flex items-center justify-center relative overflow-hidden bg-gray-50 dark:bg-slate-950"
+        className="aspect-[3/4] flex items-center justify-center relative overflow-hidden bg-gray-50 dark:bg-white/[0.02]"
       >
         {thumbnailUrl ? (
           <img 
             src={thumbnailUrl} 
             alt={`Page ${pageNumber}`} 
-            className="w-full h-full object-contain transition-transform duration-300 ease-in-out"
+            className="w-full h-full object-contain transition-transform duration-500 ease-in-out"
             style={{ transform: `rotate(${rotation}deg)` }}
           />
         ) : (
-          <div className="animate-pulse w-full h-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center">
-            <span className="text-xs text-gray-400">加载中...</span>
+          <div className="animate-pulse w-full h-full bg-gray-100 dark:bg-white/5 flex items-center justify-center">
+            <span className="text-xs text-gray-400 dark:text-zinc-600 font-bold">加载中...</span>
           </div>
         )}
 
         {/* Deleted Overlay */}
         {isDeleted && (
-          <div className="absolute inset-0 bg-red-500/20 backdrop-blur-[1px] flex items-center justify-center">
-            <div className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center">
-              <Trash2 className="w-3 h-3 mr-1" />
+          <div className="absolute inset-0 bg-red-500/20 backdrop-blur-[2px] flex items-center justify-center">
+            <div className="bg-red-600 text-white px-4 py-2 rounded-2xl text-xs font-black shadow-2xl flex items-center tracking-tight">
+              <Trash2 className="w-4 h-4 mr-2" />
               已标记删除
             </div>
           </div>
@@ -166,41 +166,41 @@ const EditorPageCard: React.FC<EditorPageCardProps> = ({
 
         {/* Hover Controls */}
         {!isOverlay && (
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-[2px]">
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center gap-4 backdrop-blur-[4px]">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onRotate(pageNumber);
               }}
-              className="p-2 bg-white dark:bg-slate-800 rounded-full text-gray-700 dark:text-slate-200 hover:text-pdf-red transition-colors shadow-lg"
+              className="p-3 bg-white dark:bg-white/10 rounded-2xl text-gray-700 dark:text-zinc-100 hover:text-pdf-red dark:hover:text-violet-400 transition-all shadow-2xl hover:scale-110 active:scale-95"
               title="旋转 90°"
             >
-              <RotateCw className="w-5 h-5" />
+              <RotateCw className="w-6 h-6" />
             </button>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onDelete(pageNumber);
               }}
-              className={`p-2 rounded-full text-white transition-colors shadow-lg ${
+              className={`p-3 rounded-2xl text-white transition-all shadow-2xl hover:scale-110 active:scale-95 ${
                 isDeleted ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'
               }`}
               title={isDeleted ? "取消删除" : "删除页面"}
             >
-              {isDeleted ? <Undo2 className="w-5 h-5" /> : <Trash2 className="w-5 h-5" />}
+              {isDeleted ? <Undo2 className="w-6 h-6" /> : <Trash2 className="w-6 h-6" />}
             </button>
           </div>
         )}
 
         {/* Page Number Badge */}
-        <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-1.5 py-0.5 rounded font-medium z-10">
+        <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-xl text-white text-[11px] px-2.5 py-1 rounded-xl font-black z-10 tracking-tight">
           第 {pageNumber} 页
         </div>
         
         {/* Selection Status */}
         {!isDeleted && (
-          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <CheckCircle2 className="w-5 h-5 text-pdf-red fill-white dark:fill-slate-900" />
+          <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all">
+            <CheckCircle2 className="w-6 h-6 text-pdf-red dark:text-violet-400 fill-white dark:fill-zinc-900" />
           </div>
         )}
       </div>

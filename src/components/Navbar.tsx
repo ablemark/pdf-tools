@@ -25,36 +25,36 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white dark:bg-slate-900/80 shadow-sm sticky top-0 z-50 transition-colors border-b border-gray-100 dark:border-slate-800 glass">
+    <nav className="bg-white/80 dark:bg-white/[0.02] shadow-sm sticky top-0 z-50 transition-all border-b border-gray-100 dark:border-white/5 backdrop-blur-xl glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-20 items-center">
           <div className="flex items-center">
             {/* Logo */}
-            <a href="#" className="flex-shrink-0 flex items-center cursor-pointer">
-              <div className="bg-pdf-red text-white font-bold text-xl p-1 rounded mr-1">PDF</div>
-              <span className="font-bold text-xl tracking-tight text-gray-900 dark:text-slate-200">Tools</span>
+            <a href="#" className="flex-shrink-0 flex items-center cursor-pointer group">
+              <div className="bg-pdf-red dark:bg-violet-500 text-white font-black text-xl p-1.5 rounded-xl mr-2 group-hover:scale-110 transition-transform shadow-lg">PDF</div>
+              <span className="font-black text-2xl tracking-tighter text-gray-900 dark:text-zinc-100">Tools</span>
             </a>
             
             {/* Desktop Menu */}
-            <div className="hidden md:ml-8 md:flex md:space-x-8">
+            <div className="hidden md:ml-12 md:flex md:space-x-10">
               <div className="relative group" ref={menuRef}>
                 <button 
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="text-gray-700 dark:text-slate-300 hover:text-pdf-red dark:hover:text-pdf-red inline-flex items-center px-1 pt-1 text-sm font-medium h-16 transition-colors"
+                  className="text-gray-700 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-violet-400 inline-flex items-center px-1 pt-1 text-sm font-black uppercase tracking-widest h-20 transition-all"
                 >
                   全部 PDF 工具
-                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isMenuOpen ? 'rotate-180 text-pdf-red dark:text-violet-400' : ''}`} />
                 </button>
                 
                 {/* Dropdown Menu */}
                 {isMenuOpen && (
-                  <div className="absolute left-0 mt-0 w-48 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none py-1 z-50 border border-gray-100 dark:border-slate-700">
+                  <div className="absolute left-0 mt-0 w-56 rounded-3xl shadow-2xl bg-white dark:bg-zinc-900/90 backdrop-blur-2xl ring-1 ring-black ring-opacity-5 focus:outline-none py-3 z-50 border border-gray-100 dark:border-white/10 glass animate-in fade-in slide-in-from-top-2 duration-200">
                     {tools.map(tool => (
                       <a
                         key={tool.id}
                         href={`#${tool.id}`}
                         onClick={() => setIsMenuOpen(false)}
-                        className="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-pdf-red dark:hover:text-red-400 transition-colors"
+                        className="block px-6 py-3 text-sm font-bold text-gray-700 dark:text-zinc-300 hover:bg-red-50 dark:hover:bg-white/5 hover:text-pdf-red dark:hover:text-violet-400 transition-all"
                       >
                         {tool.title}
                       </a>
@@ -66,19 +66,19 @@ export default function Navbar() {
           </div>
 
           {/* Right side buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button className="text-gray-700 dark:text-slate-300 hover:text-pdf-red dark:hover:text-pdf-red text-sm font-medium px-3 py-2 transition-colors">
+          <div className="hidden md:flex items-center space-x-6">
+            <button className="text-gray-700 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-zinc-100 text-sm font-black uppercase tracking-widest px-3 py-2 transition-all">
               登录
             </button>
-            <button className="bg-pdf-red hover:bg-pdf-red-hover text-white text-sm font-medium px-4 py-2 rounded transition-colors">
+            <button className="bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white text-sm font-black uppercase tracking-widest px-6 py-3 rounded-2xl transition-all shadow-lg active:scale-95">
               注册
             </button>
           </div>
 
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
-            <button className="text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 p-2 transition-colors">
-              <Menu className="h-6 w-6" />
+            <button className="text-gray-500 dark:text-zinc-400 hover:text-gray-700 dark:hover:text-zinc-100 p-2 transition-all">
+              <Menu className="h-7 w-7" />
             </button>
           </div>
         </div>

@@ -12,17 +12,21 @@ export default function Layout({ children, currentTab, onTabChange }: LayoutProp
   const { isDark, toggleDark } = useDarkMode();
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 dark:bg-[#020205] transition-colors duration-300 relative overflow-hidden">
+      {/* Ambient Glow */}
+      <div className="absolute top-[-20%] left-[20%] w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[120px] pointer-events-none hidden dark:block"></div>
+      <div className="absolute bottom-[-10%] right-[10%] w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[100px] pointer-events-none hidden dark:block"></div>
+
       {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col shadow-sm z-10">
+      <aside className="w-full md:w-64 bg-white dark:bg-black/20 dark:backdrop-blur-xl border-r border-gray-200 dark:border-white/5 flex flex-col shadow-sm z-10">
         <div className="p-6 flex items-center justify-between md:justify-start">
           <div className="flex items-center cursor-pointer" onClick={() => onTabChange('tools')}>
-            <div className="bg-pdf-red text-white font-bold text-xl p-1 rounded mr-2">PDF</div>
-            <span className="font-bold text-xl tracking-tight dark:text-white">Tools</span>
+            <div className="bg-pdf-red dark:bg-gradient-to-br dark:from-violet-600 dark:to-indigo-600 text-white font-bold text-xl p-1 rounded mr-2">PDF</div>
+            <span className="font-bold text-xl tracking-tight dark:text-zinc-100">Tools</span>
           </div>
           <button 
             onClick={toggleDark}
-            className="md:hidden p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+            className="md:hidden p-2 text-gray-500 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-white/5 rounded-full transition-colors"
           >
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
@@ -33,8 +37,8 @@ export default function Layout({ children, currentTab, onTabChange }: LayoutProp
             onClick={() => onTabChange('tools')}
             className={`flex items-center px-4 py-3 rounded-xl transition-all whitespace-nowrap ${
               currentTab === 'tools' 
-                ? 'bg-red-50 text-pdf-red dark:bg-red-900/20 dark:text-red-400 font-medium' 
-                : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700/50'
+                ? 'bg-red-50 text-pdf-red dark:bg-white/5 dark:text-violet-400 font-medium' 
+                : 'text-gray-600 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-white/5'
             }`}
           >
             <Home className="w-5 h-5 mr-3" />
@@ -44,8 +48,8 @@ export default function Layout({ children, currentTab, onTabChange }: LayoutProp
             onClick={() => onTabChange('history')}
             className={`flex items-center px-4 py-3 rounded-xl transition-all whitespace-nowrap ${
               currentTab === 'history' 
-                ? 'bg-red-50 text-pdf-red dark:bg-red-900/20 dark:text-red-400 font-medium' 
-                : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700/50'
+                ? 'bg-red-50 text-pdf-red dark:bg-white/5 dark:text-violet-400 font-medium' 
+                : 'text-gray-600 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-white/5'
             }`}
           >
             <History className="w-5 h-5 mr-3" />
@@ -53,10 +57,10 @@ export default function Layout({ children, currentTab, onTabChange }: LayoutProp
           </button>
         </nav>
 
-        <div className="hidden md:flex p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="hidden md:flex p-4 border-t border-gray-200 dark:border-white/5">
           <button 
             onClick={toggleDark}
-            className="flex items-center w-full px-4 py-3 text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700/50 rounded-xl transition-all"
+            className="flex items-center w-full px-4 py-3 text-gray-600 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-white/5 rounded-xl transition-all"
           >
             {isDark ? (
               <>

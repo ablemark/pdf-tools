@@ -12,15 +12,15 @@ export default function ToolCard({ title, description, icon, onClick }: ToolCard
   return (
     <div 
       onClick={onClick}
-      className="bg-white dark:bg-slate-900/50 rounded-xl p-6 flex flex-col items-center text-center cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-100 dark:border-slate-800 dark:hover:border-red-500/50 dark:hover:shadow-[0_0_15px_rgba(239,68,68,0.1)] group glass"
+      className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl rounded-2xl p-8 flex flex-col items-center text-center cursor-pointer transition-all duration-500 hover:shadow-xl hover:-translate-y-2 border border-gray-100 dark:border-white/[0.05] dark:hover:border-indigo-500/50 dark:hover:bg-white/[0.04] group glass"
     >
-      <div className="text-pdf-red mb-4 group-hover:scale-110 transition-transform duration-300">
+      <div className="text-pdf-red dark:text-zinc-600 mb-6 group-hover:scale-110 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)] transition-all duration-500">
         {icon}
       </div>
-      <h3 className="text-xl font-bold text-gray-800 dark:text-slate-200 mb-2 group-hover:text-pdf-red dark:group-hover:text-pdf-red transition-colors">
+      <h3 className="text-xl font-bold text-gray-800 dark:text-zinc-100 mb-3 group-hover:text-pdf-red dark:group-hover:text-cyan-400 transition-colors">
         {title}
       </h3>
-      <p className="text-sm text-gray-500 dark:text-slate-400 leading-relaxed">
+      <p className="text-sm text-gray-500 dark:text-zinc-500 leading-relaxed">
         {description}
       </p>
     </div>

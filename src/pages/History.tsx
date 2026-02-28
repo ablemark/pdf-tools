@@ -50,12 +50,12 @@ export default function History() {
 
   if (!records || records.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-        <div className="bg-gray-100 dark:bg-gray-800 p-8 rounded-full mb-6">
-          <FileText className="w-24 h-24 text-gray-400 dark:text-gray-500" />
+      <div className="flex flex-col items-center justify-center h-full p-12 text-center">
+        <div className="bg-gray-100 dark:bg-white/5 p-12 rounded-[3rem] mb-10 backdrop-blur-xl border border-transparent dark:border-white/5 shadow-2xl">
+          <FileText className="w-32 h-32 text-gray-400 dark:text-zinc-600" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">暂无历史记录</h2>
-        <p className="text-gray-500 dark:text-gray-400 max-w-md">
+        <h2 className="text-4xl font-black text-gray-800 dark:text-zinc-100 mb-6 tracking-tight">暂无历史记录</h2>
+        <p className="text-gray-500 dark:text-zinc-400 max-w-md font-medium text-lg leading-relaxed">
           您还没有处理过任何 PDF 文件。快去工具箱开始处理您的第一个 PDF 吧！
         </p>
       </div>
@@ -63,65 +63,69 @@ export default function History() {
   }
 
   return (
-    <div className="p-8 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">历史记录</h1>
+    <div className="p-8 max-w-7xl mx-auto">
+      <h1 className="text-5xl font-black text-gray-900 dark:text-zinc-100 mb-12 tracking-tight">历史记录</h1>
       
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+      <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-gray-200 dark:border-white/5 overflow-hidden glass">
+        <div className="overflow-x-auto custom-scrollbar">
+          <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
-              <tr className="bg-gray-50 dark:bg-slate-900/50 border-b border-gray-200 dark:border-slate-700">
-                <th className="py-4 px-6 font-semibold text-gray-600 dark:text-gray-300">文件名</th>
-                <th className="py-4 px-6 font-semibold text-gray-600 dark:text-gray-300">操作类型</th>
-                <th className="py-4 px-6 font-semibold text-gray-600 dark:text-gray-300">日期</th>
-                <th className="py-4 px-6 font-semibold text-gray-600 dark:text-gray-300">大小</th>
-                <th className="py-4 px-6 font-semibold text-gray-600 dark:text-gray-300 text-right">操作</th>
+              <tr className="bg-gray-50 dark:bg-white/5 border-b border-gray-200 dark:border-white/5">
+                <th className="py-6 px-8 font-black text-gray-600 dark:text-zinc-500 uppercase tracking-widest text-xs">文件名</th>
+                <th className="py-6 px-8 font-black text-gray-600 dark:text-zinc-500 uppercase tracking-widest text-xs">操作类型</th>
+                <th className="py-6 px-8 font-black text-gray-600 dark:text-zinc-500 uppercase tracking-widest text-xs">日期</th>
+                <th className="py-6 px-8 font-black text-gray-600 dark:text-zinc-500 uppercase tracking-widest text-xs">大小</th>
+                <th className="py-6 px-8 font-black text-gray-600 dark:text-zinc-500 uppercase tracking-widest text-xs text-right">操作</th>
               </tr>
             </thead>
             <tbody>
               {records.map((record) => (
                 <tr 
                   key={record.id} 
-                  className="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
+                  className="border-b border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-all group"
                 >
-                  <td className="py-4 px-6">
+                  <td className="py-6 px-8">
                     <div className="flex items-center">
-                      <FileText className="w-5 h-5 text-pdf-red mr-3" />
-                      <span className="font-medium text-gray-800 dark:text-gray-200 truncate max-w-[200px] sm:max-w-xs">
+                      <div className="bg-pdf-red/10 dark:bg-violet-500/10 p-2.5 rounded-xl mr-4 group-hover:scale-110 transition-transform">
+                        <FileText className="w-6 h-6 text-pdf-red dark:text-violet-400" />
+                      </div>
+                      <span className="font-black text-gray-800 dark:text-zinc-200 truncate max-w-[200px] sm:max-w-xs tracking-tight">
                         {record.fileName}
                       </span>
                     </div>
                   </td>
-                  <td className="py-4 px-6">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                  <td className="py-6 px-8">
+                    <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest bg-blue-100 text-blue-800 dark:bg-violet-500/20 dark:text-violet-300 border border-transparent dark:border-violet-500/30">
                       {record.operationType}
                     </span>
                   </td>
-                  <td className="py-4 px-6 text-gray-500 dark:text-gray-400 text-sm flex items-center">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    {formatDate(record.timestamp)}
-                  </td>
-                  <td className="py-4 px-6 text-gray-500 dark:text-gray-400 text-sm">
+                  <td className="py-6 px-8 text-gray-500 dark:text-zinc-400 text-sm font-bold">
                     <div className="flex items-center">
-                      <HardDrive className="w-4 h-4 mr-2" />
+                      <Calendar className="w-4 h-4 mr-2.5 opacity-50" />
+                      {formatDate(record.timestamp)}
+                    </div>
+                  </td>
+                  <td className="py-6 px-8 text-gray-500 dark:text-zinc-400 text-sm font-bold">
+                    <div className="flex items-center">
+                      <HardDrive className="w-4 h-4 mr-2.5 opacity-50" />
                       {formatFileSize(record.fileSize)}
                     </div>
                   </td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="flex justify-end space-x-2">
+                  <td className="py-6 px-8 text-right">
+                    <div className="flex justify-end space-x-3">
                       <button 
                         onClick={() => handleDownload(record.blob, record.fileName)}
-                        className="p-2 text-gray-500 hover:text-pdf-red hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                        className="p-3 text-gray-500 hover:text-pdf-red dark:hover:text-violet-400 hover:bg-red-50 dark:hover:bg-white/5 rounded-2xl transition-all active:scale-95 border border-transparent hover:border-gray-100 dark:hover:border-white/5"
                         title="下载"
                       >
-                        <Download className="w-5 h-5" />
+                        <Download className="w-6 h-6" />
                       </button>
                       <button 
                         onClick={() => handleDelete(record.id)}
-                        className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                        className="p-3 text-gray-500 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-white/5 rounded-2xl transition-all active:scale-95 border border-transparent hover:border-gray-100 dark:hover:border-white/5"
                         title="删除"
                       >
-                        <Trash2 className="w-5 h-5" />
+                        <Trash2 className="w-6 h-6" />
                       </button>
                     </div>
                   </td>

@@ -65,57 +65,60 @@ export default function FileUploader({
 
   return (
     <div className="w-full max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8 transition-colors">{title}</h2>
+      <h2 className="text-5xl font-black text-center text-gray-800 dark:text-zinc-100 mb-12 tracking-tight transition-colors">{title}</h2>
       
       {selectedFiles.length === 0 ? (
         <div
           {...getRootProps()}
           className={`
-            border-2 border-dashed rounded-2xl p-16 text-center cursor-pointer transition-all duration-300
-            flex flex-col items-center justify-center min-h-[400px]
+            border-2 border-dashed rounded-[3rem] p-16 text-center cursor-pointer transition-all duration-700
+            flex flex-col items-center justify-center min-h-[450px]
             ${isDragActive 
-              ? 'border-pdf-red bg-red-50 dark:bg-red-900/20' 
-              : 'border-gray-300 dark:border-gray-700 hover:border-pdf-red dark:hover:border-pdf-red hover:bg-gray-50 dark:hover:bg-gray-800 bg-white dark:bg-gray-800/50'
+              ? 'border-violet-500 bg-violet-500/10 shadow-[0_0_50px_rgba(139,92,246,0.3)] scale-[1.02]' 
+              : 'border-gray-300 dark:border-white/5 hover:border-pdf-red dark:hover:border-violet-500/50 hover:bg-gray-50 dark:hover:bg-white/[0.03] bg-white dark:bg-white/[0.01] dark:backdrop-blur-2xl shadow-2xl'
             }
           `}
         >
           <input {...getInputProps()} />
-          <UploadCloud className={`w-20 h-20 mb-6 transition-colors ${isDragActive ? 'text-pdf-red' : 'text-gray-400 dark:text-gray-500'}`} />
-          <button className="bg-pdf-red hover:bg-pdf-red-hover text-white text-xl font-bold py-4 px-8 rounded-xl shadow-lg transition-transform hover:scale-105 mb-4">
+          <div className={`p-8 rounded-[2.5rem] mb-10 transition-all duration-700 ${isDragActive ? 'bg-violet-500/20 scale-110 shadow-2xl' : 'bg-gray-50 dark:bg-white/5'}`}>
+            <UploadCloud className={`w-24 h-24 transition-all duration-700 ${isDragActive ? 'text-violet-400' : 'text-gray-400 dark:text-zinc-700'}`} />
+          </div>
+          <button className="bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white text-2xl font-black uppercase tracking-widest py-5 px-12 rounded-[2rem] shadow-2xl transition-all hover:scale-105 active:scale-95 mb-8">
             {buttonText}
           </button>
-          <p className="text-gray-500 dark:text-gray-400 text-lg transition-colors">
+          <p className="text-gray-500 dark:text-zinc-500 text-xl font-medium transition-colors">
             {isDragActive ? "松开鼠标以上传文件" : dropText}
           </p>
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-700 p-8 transition-colors">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-white transition-colors">已选文件 ({selectedFiles.length})</h3>
+        <div className="bg-white dark:bg-white/[0.02] dark:backdrop-blur-3xl rounded-[3rem] shadow-2xl border border-gray-200 dark:border-white/5 p-10 transition-all glass">
+          <div className="flex justify-between items-center mb-10">
+            <h3 className="text-2xl font-black text-gray-800 dark:text-zinc-100 transition-colors tracking-tight">已选文件 ({selectedFiles.length})</h3>
             <button 
               {...getRootProps()}
-              className="text-pdf-red hover:text-pdf-red-hover font-medium text-sm flex items-center transition-colors"
+              className="text-pdf-red dark:text-violet-400 hover:text-pdf-red-hover dark:hover:text-violet-300 font-black uppercase tracking-widest text-xs flex items-center transition-all hover:scale-105"
             >
               <input {...getInputProps()} />
-              + 添加更多文件
+              <span className="bg-pdf-red/10 dark:bg-violet-500/10 p-2 rounded-lg mr-2">+</span>
+              添加更多文件
             </button>
           </div>
           
-          <div className="space-y-3 mb-8 max-h-[400px] overflow-y-auto pr-2">
+          <div className="space-y-4 mb-12 max-h-[450px] overflow-y-auto pr-4 custom-scrollbar">
             {selectedFiles.map((file, index) => (
               <div 
                 key={`${file.name}-${index}`}
-                className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-700 hover:border-gray-200 dark:hover:border-slate-600 transition-colors"
+                className="flex items-center justify-between p-6 bg-gray-50 dark:bg-white/[0.03] rounded-[2rem] border border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 transition-all group"
               >
-                <div className="flex items-center space-x-4 overflow-hidden">
-                  <div className="bg-red-100 dark:bg-red-900/30 p-2 rounded-lg text-pdf-red transition-colors">
-                    <FileText className="w-6 h-6" />
+                <div className="flex items-center space-x-5 overflow-hidden">
+                  <div className="bg-red-100 dark:bg-violet-500/10 p-4 rounded-2xl text-pdf-red dark:text-violet-400 transition-all group-hover:scale-110">
+                    <FileText className="w-7 h-7" />
                   </div>
                   <div className="truncate">
-                    <p className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate max-w-[200px] sm:max-w-xs md:max-w-md transition-colors">
+                    <p className="text-base font-black text-gray-800 dark:text-zinc-100 truncate max-w-[200px] sm:max-w-xs md:max-w-md transition-colors tracking-tight">
                       {file.name}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 transition-colors">
+                    <p className="text-xs font-black uppercase tracking-widest text-gray-500 dark:text-zinc-500 mt-1.5 transition-colors opacity-60">
                       {formatFileSize(file.size)}
                     </p>
                   </div>
@@ -125,10 +128,10 @@ export default function FileUploader({
                     e.stopPropagation();
                     removeFile(index);
                   }}
-                  className="p-2 text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-full transition-colors"
+                  className="p-3 text-gray-400 dark:text-zinc-600 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-white/5 rounded-2xl transition-all active:scale-90"
                   title="移除文件"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-6 h-6" />
                 </button>
               </div>
             ))}
@@ -137,7 +140,7 @@ export default function FileUploader({
           <div className="flex justify-center">
             <button 
               onClick={handleContinue}
-              className="bg-pdf-red hover:bg-pdf-red-hover text-white text-lg font-bold py-3 px-12 rounded-xl shadow-md transition-transform hover:scale-105"
+              className="bg-pdf-red dark:btn-neon hover:bg-pdf-red-hover text-white text-xl font-black uppercase tracking-widest py-5 px-20 rounded-[2rem] shadow-2xl transition-all hover:scale-105 active:scale-95"
             >
               继续处理
             </button>

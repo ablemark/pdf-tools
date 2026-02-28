@@ -158,13 +158,13 @@ export default function Home() {
     if (selectedTool) {
       const tool = tools.find(t => t.id === selectedTool);
       return (
-        <div className="flex-grow bg-gray-50 dark:bg-gray-900 py-12 transition-colors">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        <div className="flex-grow py-12 transition-colors">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
             <button 
               onClick={handleBack}
-              className="flex items-center text-gray-600 dark:text-gray-400 hover:text-pdf-red dark:hover:text-pdf-red transition-colors font-medium"
+              className="flex items-center text-gray-600 dark:text-zinc-400 hover:text-pdf-red dark:hover:text-violet-400 transition-colors font-bold group"
             >
-              <ArrowLeft className="w-5 h-5 mr-2" />
+              <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
               返回工具列表
             </button>
           </div>
@@ -177,20 +177,20 @@ export default function Home() {
     }
 
     return (
-      <div className="flex-grow dark:bg-gray-900 transition-colors">
+      <div className="flex-grow transition-colors">
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
-            为 PDF 爱好者提供的全能工具
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-zinc-100 mb-6 tracking-tight">
+            让 PDF 处理变得<span className="text-pdf-red dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-violet-400 dark:to-indigo-400">更简单</span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            完全免费、易于使用的在线 PDF 工具。合并、拆分、压缩和转换 PDF，只需点击几下。
+          <p className="text-xl text-gray-600 dark:text-zinc-500 max-w-3xl mx-auto font-medium">
+            专业、安全、高效的在线 PDF 工具集，满足您的所有文档处理需求。
           </p>
         </div>
 
         {/* Tools Grid */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {tools.map((tool) => (
               <ToolCard
                 key={tool.id}

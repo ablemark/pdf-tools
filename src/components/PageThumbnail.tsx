@@ -54,41 +54,41 @@ const PageThumbnail: React.FC<PageThumbnailProps> = ({ pdf, pageNumber, isSelect
   return (
     <div 
       onClick={() => onToggle(pageNumber)}
-      className={`relative cursor-pointer group rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+      className={`relative cursor-pointer group rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
         isSelected 
-          ? 'border-pdf-red ring-2 ring-pdf-red/20 shadow-md' 
-          : 'border-transparent hover:border-gray-300 dark:hover:border-gray-600'
+          ? 'border-pdf-red dark:border-violet-500 ring-4 ring-pdf-red/20 dark:ring-violet-500/20 shadow-2xl scale-[1.02]' 
+          : 'border-transparent hover:border-gray-300 dark:hover:border-white/20 hover:scale-[1.01]'
       }`}
     >
-      <div className="aspect-[3/4] bg-gray-100 dark:bg-gray-900 flex items-center justify-center relative">
+      <div className="aspect-[3/4] bg-gray-50 dark:bg-white/5 flex items-center justify-center relative group-hover:bg-gray-100 dark:group-hover:bg-white/10 transition-colors">
         {loading ? (
-          <div className="animate-pulse w-full h-full bg-gray-200 dark:bg-gray-800"></div>
+          <div className="animate-pulse w-full h-full bg-gray-200 dark:bg-white/10"></div>
         ) : thumbnailUrl ? (
           <img 
             src={thumbnailUrl} 
             alt={`Page ${pageNumber}`} 
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <span className="text-xs text-gray-400">无法预览</span>
+          <span className="text-xs text-gray-400 dark:text-zinc-500 font-black uppercase tracking-widest">无法预览</span>
         )}
 
         {/* Selection Overlay */}
-        <div className={`absolute inset-0 transition-colors duration-200 ${
-          isSelected ? 'bg-pdf-red/5' : 'group-hover:bg-black/5'
+        <div className={`absolute inset-0 transition-colors duration-300 ${
+          isSelected ? 'bg-pdf-red/5 dark:bg-violet-500/10' : 'group-hover:bg-black/5 dark:group-hover:bg-white/5'
         }`}></div>
 
         {/* Checkbox Icon */}
-        <div className={`absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 ${
+        <div className={`absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg backdrop-blur-md border border-transparent dark:border-white/10 ${
           isSelected 
-            ? 'bg-pdf-red text-white scale-100' 
-            : 'bg-white/80 dark:bg-gray-800/80 text-transparent scale-0 group-hover:scale-100'
+            ? 'bg-pdf-red dark:bg-violet-500 text-white scale-100 rotate-0' 
+            : 'bg-white/80 dark:bg-white/10 text-transparent scale-0 -rotate-12 group-hover:scale-100 group-hover:rotate-0'
         }`}>
-          <Check className="w-4 h-4" />
+          <Check className="w-4 h-4 stroke-[3px]" />
         </div>
 
         {/* Page Number Badge */}
-        <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-1.5 py-0.5 rounded font-medium">
+        <div className="absolute bottom-3 left-3 bg-black/60 dark:bg-white/10 backdrop-blur-md text-white text-[10px] px-2 py-1 rounded-lg font-black uppercase tracking-widest border border-transparent dark:border-white/10">
           第 {pageNumber} 页
         </div>
       </div>
